@@ -1,0 +1,92 @@
+{% extends 'blogapp/base.html' %}
+{% block navblock %}
+{% load crispy_forms_tags %}
+
+
+<script src="https://use.fontawesome.com/0a087d3bc2.js"></script>
+
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
+<center><h1> Blogs </h1></center>
+  <div class="container">
+    {% if images %}
+    <table class="table table-striped">
+
+        <tr>
+          <th>TITLE</th>
+          <th>IMAGE</th>
+          <th>AUTHOR</th>
+          <th> REMOVE </th>
+        </tr>
+
+        {% for data in images %}
+
+
+  <!--  <div class="container">
+      <div class="well">
+          <div class="media">
+          	<a class="pull-left" href="/detailblog/{{data.id}}">
+        		<img class="media-object" src="{{data.image.url}}" width = 200px height = 200px>
+      		</a>
+      		<div class="media-body">
+        		<center><h4 class="media-heading">{{data.title}}</h4></center>
+              <p class="text-right">By {{data.author}}</p>
+              {% ifequal request.user.username data.author %}
+              <a href="/deleteblog/{{data.id}}" class = "fa fa-times"></a>
+              {% endifequal %}-->
+
+
+
+
+      <tr>
+        <td>{{data.title}}</td>
+        <td><a href="/detailblog/{{data.id}}"><img src="{{data.image.url}}" width = 200px height = 200px>
+      </a></td>
+        <td>{{data.author}}</td>
+
+      <td>
+      {% ifequal request.user.username data.author %}
+      <a href="/deleteblog/{{data.id}}" class = "fa fa-times"></a>
+      {% endifequal %}</td>
+      </tr>
+
+
+
+
+
+
+
+
+
+              <!--<p>{{data.description}} </p>
+              <ul class="list-inline list-unstyled">
+
+      			<li><span><i class="glyphicon glyphicon-calendar"></i> {{data.upload_date| timesince}} </span></li>
+                <li>|</li>
+                <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
+                <li>|</li>
+                <li>
+                   <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                </li>
+                <li>|</li>
+                <li>
+                <!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/
+                  <span><i class="fa fa-facebook-square"></i></span>
+                  <span><i class="fa fa-twitter-square"></i></span>
+                  <span><i class="fa fa-google-plus-square"></i></span>
+                </li>
+    			</ul>-->
+
+
+      {%endfor%}
+  </table>
+  </div>
+      {%else%}
+      "NO DATA FOUND"
+      {%endif%}
+{%endblock%}
